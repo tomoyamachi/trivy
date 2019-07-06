@@ -159,7 +159,7 @@ func Run(c *cli.Context) (err error) {
 
 	log.Logger.Debugf("Vulnerability type:  %s", scanOptions.VulnType)
 
-	vulns, err := scanner.ScanImage(imageName, filePath, scanOptions)
+	osFamily, osVersion, vulns, err := scanner.ScanImage(imageName, filePath, scanOptions)
 	if err != nil {
 		return xerrors.Errorf("error in image scan: %w", err)
 	}
@@ -183,7 +183,7 @@ func Run(c *cli.Context) (err error) {
 		return xerrors.Errorf("unknown format: %v", format)
 	}
 
-	if err = writer.Write(results); err != nil {
+	if err = writer.Write(osFamily, osVersion, results); err != nil {
 		return xerrors.Errorf("failed to write results: %w", err)
 	}
 

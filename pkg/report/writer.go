@@ -22,14 +22,14 @@ type Result struct {
 }
 
 type Writer interface {
-	Write(Results) error
+	Write(string, string, Results) error
 }
 
 type TableWriter struct {
 	Output io.Writer
 }
 
-func (tw TableWriter) Write(results Results) error {
+func (tw TableWriter) Write(osFamily string, osVersion string, results Results) error {
 	for _, result := range results {
 		tw.write(result)
 	}
@@ -83,12 +83,49 @@ type JsonWriter struct {
 	Output io.Writer
 }
 
-func (jw JsonWriter) Write(results Results) error {
-	output, err := json.MarshalIndent(results, "", "  ")
+type JsonFormat struct {
+	Summary JsonSummary `json:"summary"`
+	Detail  Results     `json:"detail"`
+}
+type JsonSummary struct {
+	OsFamily  string `json:"osFamily"`
+	OsVersion string `json:"osVersion"`
+	Critical  int    `json:"CRITICAL"`
+	High      int    `json:"HIGH"`
+	Medium    int    `json:"MEDIUM"`
+	Low       int    `json:"LOW"`
+	Unknown   int    `json:"UNKNOWN"`
+}
+
+func (jw JsonWriter) Write(osFamily string, osVersion string, results Results) error {
+	summary := JsonSummary{
+		OsFamily:  osFamily,
+		OsVersion: osVersion,
+	}
+	for _, result := range results {
+		for _, v := range result.Vulnerabilities {
+			switch v.Severity {
+			case vulnerability.SeverityNames[vulnerability.SeverityCritical]:
+				summary.Critical++
+			case vulnerability.SeverityNames[vulnerability.SeverityHigh]:
+				summary.High++
+			case vulnerability.SeverityNames[vulnerability.SeverityMedium]:
+				summary.Medium++
+			case vulnerability.SeverityNames[vulnerability.SeverityLow]:
+				summary.Low++
+			default:
+				summary.Unknown++
+			}
+		}
+	}
+	outputStruct := JsonFormat{
+		Summary: summary,
+		Detail:  results,
+	}
+	output, err := json.MarshalIndent(outputStruct, "", "  ")
 	if err != nil {
 		return xerrors.Errorf("failed to marshal json: %w", err)
 	}
-
 	if _, err = fmt.Fprint(jw.Output, string(output)); err != nil {
 		return xerrors.Errorf("failed to write json: %w", err)
 	}

@@ -17,7 +17,7 @@ import (
 	"golang.org/x/xerrors"
 )
 
-func ScanImage(imageName, filePath string, scanOptions types.ScanOptions) (map[string][]vulnerability.DetectedVulnerability, error) {
+func ScanImage(imageName, filePath string, scanOptions types.ScanOptions) (string, string, map[string][]vulnerability.DetectedVulnerability, error) {
 	results := map[string][]vulnerability.DetectedVulnerability{}
 	ctx := context.Background()
 
@@ -27,31 +27,34 @@ func ScanImage(imageName, filePath string, scanOptions types.ScanOptions) (map[s
 		target = imageName
 		dockerOption, err := types.GetDockerOption()
 		if err != nil {
-			return nil, xerrors.Errorf("failed to get docker option: %w", err)
+			return "", "", nil, xerrors.Errorf("failed to get docker option: %w", err)
 		}
 		files, err = analyzer.Analyze(ctx, imageName, dockerOption)
 		if err != nil {
-			return nil, xerrors.Errorf("failed to analyze image: %w", err)
+			return "", "", nil, xerrors.Errorf("failed to analyze image: %w", err)
 		}
 	} else if filePath != "" {
 		target = filePath
 		rc, err := openStream(filePath)
 		if err != nil {
-			return nil, xerrors.Errorf("failed to open stream: %w", err)
+			return "", "", nil, xerrors.Errorf("failed to open stream: %w", err)
 		}
 
 		files, err = analyzer.AnalyzeFromFile(ctx, rc)
 		if err != nil {
-			return nil, err
+			return "", "", nil, err
 		}
 	} else {
-		return nil, xerrors.New("image name or image file must be specified")
+		return "", "", nil, xerrors.New("image name or image file must be specified")
 	}
 
+	var osFamily, osVersion string
+	var osVulns []vulnerability.DetectedVulnerability
+	var err error
 	if utils.StringInSlice("os", scanOptions.VulnType) {
-		osFamily, osVersion, osVulns, err := ospkg.Scan(files)
+		osFamily, osVersion, osVulns, err = ospkg.Scan(files)
 		if err != nil {
-			return nil, xerrors.Errorf("failed to scan image: %w", err)
+			return "", "", nil, xerrors.Errorf("failed to scan image: %w", err)
 		}
 		if osFamily != "" {
 			imageDetail := fmt.Sprintf("%s (%s %s)", target, osFamily, osVersion)
@@ -62,14 +65,14 @@ func ScanImage(imageName, filePath string, scanOptions types.ScanOptions) (map[s
 	if utils.StringInSlice("library", scanOptions.VulnType) {
 		libVulns, err := library.Scan(files, scanOptions)
 		if err != nil {
-			return nil, xerrors.Errorf("failed to scan libraries: %w", err)
+			return "", "", nil, xerrors.Errorf("failed to scan libraries: %w", err)
 		}
 		for path, vulns := range libVulns {
 			results[path] = vulns
 		}
 	}
 
-	return results, nil
+	return osFamily, osVersion, results, nil
 }
 
 func ScanFile(f *os.File) (map[string][]vulnerability.DetectedVulnerability, error) {
