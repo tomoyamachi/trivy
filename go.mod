@@ -40,13 +40,13 @@ require (
 	github.com/fatih/color v1.14.1
 	github.com/go-git/go-git/v5 v5.7.0
 	github.com/go-openapi/runtime v0.26.0
-	github.com/go-openapi/strfmt v0.21.7
+	github.com/go-openapi/strfmt v0.23.0
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/golang/protobuf v1.5.3
 	github.com/google/go-containerregistry v0.16.1
 	github.com/google/licenseclassifier/v2 v2.0.0
-	github.com/google/uuid v1.3.0
+	github.com/google/uuid v1.6.0
 	github.com/google/wire v0.5.0
 	github.com/hashicorp/go-getter v1.7.1
 	github.com/hashicorp/go-multierror v1.1.1
@@ -86,7 +86,7 @@ require (
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.15.0
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.9.0
 	github.com/testcontainers/testcontainers-go v0.21.0
 	github.com/testcontainers/testcontainers-go/modules/localstack v0.21.0
 	github.com/tetratelabs/wazero v1.2.1
@@ -98,8 +98,8 @@ require (
 	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1
 	golang.org/x/mod v0.12.0
 	golang.org/x/sync v0.3.0
-	golang.org/x/term v0.11.0
-	golang.org/x/text v0.12.0
+	golang.org/x/term v0.15.0
+	golang.org/x/text v0.14.0
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2
 	google.golang.org/protobuf v1.31.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -235,7 +235,7 @@ require (
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-openapi/analysis v0.21.4 // indirect
-	github.com/go-openapi/errors v0.20.3 // indirect
+	github.com/go-openapi/errors v0.22.0 // indirect
 	github.com/go-openapi/jsonpointer v0.19.6 // indirect
 	github.com/go-openapi/jsonreference v0.20.1 // indirect
 	github.com/go-openapi/loads v0.21.2 // indirect
@@ -337,7 +337,7 @@ require (
 	github.com/skeema/knownhosts v1.1.1 // indirect
 	github.com/spf13/afero v1.9.3 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
-	github.com/stretchr/objx v0.5.0 // indirect
+	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
 	github.com/tchap/go-patricia/v2 v2.3.1 // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
@@ -349,16 +349,16 @@ require (
 	github.com/yuin/gopher-lua v1.1.0 // indirect
 	github.com/zclconf/go-cty v1.10.0 // indirect
 	github.com/zclconf/go-cty-yaml v1.0.2 // indirect
-	go.mongodb.org/mongo-driver v1.11.3 // indirect
+	go.mongodb.org/mongo-driver v1.14.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/otel v1.14.0 // indirect
 	go.opentelemetry.io/otel/trace v1.14.0 // indirect
 	go.starlark.net v0.0.0-20200306205701-8dd3e2ee1dd5 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
-	golang.org/x/crypto v0.12.0 // indirect
+	golang.org/x/crypto v0.17.0 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/oauth2 v0.8.0 // indirect
-	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/sys v0.15.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/tools v0.10.0 // indirect
 	google.golang.org/api v0.122.0 // indirect
