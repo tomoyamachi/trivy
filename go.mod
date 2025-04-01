@@ -83,21 +83,21 @@ require (
 	github.com/sosedoff/gitkit v0.4.0
 	github.com/spdx/tools-golang v0.5.0
 	github.com/spf13/cast v1.5.1
-	github.com/spf13/cobra v1.7.0
-	github.com/spf13/pflag v1.0.5
+	github.com/spf13/cobra v1.8.1
+	github.com/spf13/pflag v1.0.6
 	github.com/spf13/viper v1.15.0
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.10.0
 	github.com/testcontainers/testcontainers-go v0.21.0
 	github.com/testcontainers/testcontainers-go/modules/localstack v0.21.0
 	github.com/tetratelabs/wazero v1.2.1
 	github.com/twitchtv/twirp v8.1.2+incompatible
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/xlab/treeprint v1.2.0
-	go.etcd.io/bbolt v1.3.7
+	go.etcd.io/bbolt v1.4.0
 	go.uber.org/zap v1.25.0
 	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1
 	golang.org/x/mod v0.12.0
-	golang.org/x/sync v0.3.0
+	golang.org/x/sync v0.10.0
 	golang.org/x/term v0.11.0
 	golang.org/x/text v0.12.0
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2
@@ -209,7 +209,7 @@ require (
 	github.com/containerd/typeurl v1.0.2 // indirect
 	github.com/containerd/typeurl/v2 v2.1.1 // indirect
 	github.com/cpuguy83/dockercfg v0.3.1 // indirect
-	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.4 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.3 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
@@ -337,7 +337,7 @@ require (
 	github.com/skeema/knownhosts v1.1.1 // indirect
 	github.com/spf13/afero v1.9.3 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
-	github.com/stretchr/objx v0.5.0 // indirect
+	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/subosito/gotenv v1.4.2 // indirect
 	github.com/tchap/go-patricia/v2 v2.3.1 // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
@@ -358,7 +358,7 @@ require (
 	golang.org/x/crypto v0.12.0 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/oauth2 v0.8.0 // indirect
-	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/sys v0.29.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	golang.org/x/tools v0.10.0 // indirect
 	google.golang.org/api v0.122.0 // indirect
